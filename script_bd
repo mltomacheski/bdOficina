@@ -65,3 +65,22 @@ CREATE TABLE IF NOT EXISTS `oficina`.`orcamento` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+
+CREATE TABLE IF NOT EXISTS `oficina`.`seguro` (
+  `idseguro` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(255) NULL,
+  `tipo_seguro` VARCHAR(255) NULL,
+  PRIMARY KEY (`idseguro`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `oficina`.`agendamento` (
+  `idtable1` INT NOT NULL AUTO_INCREMENT,
+  `nome_responsavel` VARCHAR(255) NOT NULL,
+  `placa_do_veiculo` VARCHAR(255) NOT NULL,
+  `data_entrada` DATETIME NOT NULL,
+  `horario_entrada` TIME NOT NULL,
+  `data_saida` DATETIME NOT NULL,
+  `horario_saida` TIME NOT NULL,
+  PRIMARY KEY (`idtable1`))
+ENGINE = InnoDB;
