@@ -9,4 +9,59 @@ CREATE TABLE IF NOT EXISTS `oficina`.`veiculo` (
   `chassi` VARCHAR(20) NOT NULL,
   `modelo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idveiculo`))
-ENGINE = InnoDB
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `oficina`.`responsavel` (
+  `pk` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `telefone` VARCHAR(45) BINARY NOT NULL,
+  `endereco` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`pk`))
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `oficina`.`checklist` (
+  `pk` INT NOT NULL AUTO_INCREMENT,
+  `entrada` VARCHAR(255) NOT NULL,
+  `saida` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`pk`))
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `oficina`.`material` (
+  `pk` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `quantidade` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`pk`))
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `oficina`.`peca` (
+  `pk` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `quantidade` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`pk`))
+ENGINE = InnoDB;
+
+
+CREATE TABLE IF NOT EXISTS `oficina`.`orcamento` (
+  `pk` INT NOT NULL AUTO_INCREMENT,
+  `gasto` INT NOT NULL,
+  `mao_de_obra` INT NOT NULL,
+  `peca` INT NOT NULL,
+  `peca_pk` INT NOT NULL,
+  `material_pk` INT NOT NULL,
+  PRIMARY KEY (`pk`),
+  INDEX `fk_orcamento_peca_idx` (`peca_pk` ASC),
+  INDEX `fk_orcamento_material1_idx` (`material_pk` ASC),
+  CONSTRAINT `fk_orcamento_peca`
+    FOREIGN KEY (`peca_pk`)
+    REFERENCES `oficina`.`peca` (`pk`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_orcamento_material1`
+    FOREIGN KEY (`material_pk`)
+    REFERENCES `oficina`.`material` (`pk`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
