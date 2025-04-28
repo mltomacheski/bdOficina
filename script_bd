@@ -1,0 +1,12 @@
+create database oficina;
+use oficina;
+
+CREATE TABLE IF NOT EXISTS `oficina`.`veiculo` (
+  `idveiculo` INT NOT NULL AUTO_INCREMENT,
+  `placa` VARCHAR(10) NOT NULL,
+  `cor` VARCHAR(45) NOT NULL,
+  `ano` VARCHAR(10) NOT NULL,
+  `chassi` VARCHAR(20) NOT NULL,
+  `modelo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idveiculo`))
+ENGINE = InnoDB
